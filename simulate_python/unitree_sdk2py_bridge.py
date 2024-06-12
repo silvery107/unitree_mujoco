@@ -3,6 +3,7 @@ import numpy as np
 import pygame
 import sys
 import struct
+from .utils import *
 
 from unitree_sdk2py.core.channel import ChannelSubscriber, ChannelPublisher
 from unitree_sdk2py.idl.unitree_go.msg.dds_ import LowCmd_
@@ -158,6 +159,17 @@ class UnitreeSdk2Bridge:
                 self.low_state.imu_state.accelerometer[2] = self.mj_data.sensordata[
                     self.dim_motor_sensor + 9
                 ]
+
+                rpy = quat_to_rpy(Quaternion(*self.low_state.imu_state.quaternion))
+                self.low_state.imu_state.rpy[0] = rpy[0]
+                self.low_state.imu_state.rpy[1] = rpy[1]
+                self.low_state.imu_state.rpy[2] = rpy[2]                
+
+                self.low_state.foot_force[0] = int(self.mj_data.sensordata[-4]*100)
+                self.low_state.foot_force[1] = int(self.mj_data.sensordata[-3]*100)
+                self.low_state.foot_force[2] = int(self.mj_data.sensordata[-2]*100)
+                self.low_state.foot_force[3] = int(self.mj_data.sensordata[-1]*100)
+                # print(self.low_state.foot_force)
 
             if self.joystick != None:
                 pygame.event.get()
