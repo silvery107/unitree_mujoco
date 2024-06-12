@@ -1,7 +1,11 @@
 <mujoco model="go2">
   <compiler angle="radian" meshdir="assets" autolimits="true" />
 
-  <option cone="elliptic" impratio="100" />
+  <option cone="elliptic" impratio="100" noslip_iterations="50" />
+
+  <option>
+    <flag constraint="enable"/>
+  </option>
 
   <default>
     <default class="go2">
@@ -61,7 +65,7 @@
   </asset>
 
   <worldbody>
-    <body name="base_link" pos="0 0 0.445" childclass="go2">
+    <body name="base_link" pos="0 0 1" childclass="go2">
       <inertial pos="0.021112 0 -0.005366" quat="-0.000543471 0.713435 -0.00173769 0.700719"
         mass="6.921"
         diaginertia="0.107027 0.0980771 0.0244531" />
@@ -104,8 +108,10 @@
             <geom size="0.011 0.0325" pos="0.02 0 -0.148" quat="0.999688 0 0.0249974 0"
               type="cylinder" class="collision" />
             <geom pos="0 0 -0.213" mesh="foot" class="visual" material="black" />
-            <geom name="FL" class="foot" />
-            <body name="FL_foot" pos="0 0 -0.213" />
+            <body name="FL_foot" pos="0 0 -0.213">
+              <geom name="FL" class="foot" pos="-0.002 0 0"/>
+              <site name="FL_foot_site" pos="-0.002 0 0" size="0.025"/>
+            </body>
           </body>
         </body>
       </body>
@@ -139,8 +145,10 @@
             <geom size="0.011 0.0325" pos="0.02 0 -0.148" quat="0.999688 0 0.0249974 0"
               type="cylinder" class="collision" />
             <geom pos="0 0 -0.213" mesh="foot" class="visual" material="black" />
-            <geom name="FR" class="foot" />
-            <body name="FR_foot" pos="0 0 -0.213" />
+            <body name="FR_foot" pos="0 0 -0.213">
+              <geom name="FR" class="foot" pos="-0.002 0 0"/>
+              <site name="FR_foot_site" pos="-0.002 0 0" size="0.025"/>
+            </body>
           </body>
         </body>
       </body>
@@ -174,8 +182,10 @@
             <geom size="0.011 0.0325" pos="0.02 0 -0.148" quat="0.999688 0 0.0249974 0"
               type="cylinder" class="collision" />
             <geom pos="0 0 -0.213" mesh="foot" class="visual" material="black" />
-            <geom name="RL" class="foot" />
-            <body name="RL_foot" pos="0 0 -0.213" />
+            <body name="RL_foot" pos="0 0 -0.213">
+              <geom name="RL" class="foot" pos="-0.002 0 0" />
+              <site name="RL_foot_site" pos="-0.002 0 0" size="0.025"/>
+            </body>
           </body>
         </body>
       </body>
@@ -211,8 +221,10 @@
             <geom size="0.011 0.0325" pos="0.02 0 -0.148" quat="0.999688 0 0.0249974 0"
               type="cylinder" class="collision" />
             <geom pos="0 0 -0.213" mesh="foot" class="visual" material="black" />
-            <geom name="RR" class="foot" />
-            <body name="RR_foot" pos="0 0 -0.213" />
+            <body name="RR_foot" pos="0 0 -0.213">
+              <geom name="RR" class="foot" pos="-0.002 0 0"/>
+              <site name="RR_foot_site" pos="-0.002 0 0" size="0.025"/>
+            </body>
           </body>
         </body>
       </body>
@@ -280,10 +292,14 @@
     
     <framepos name="frame_pos" objtype="site" objname="imu" />
     <framelinvel name="frame_vel" objtype="site" objname="imu" />
+
+    <touch name="FL_foot_force" site="FL_foot_site" noise="0.01" />
+    <touch name="FR_foot_force" site="FR_foot_site" noise="0.01" />
+    <touch name="RL_foot_force" site="RL_foot_site" noise="0.01" />
+    <touch name="RR_foot_force" site="RR_foot_site" noise="0.01" />
   </sensor>
 
   <keyframe>
-    <key name="home" qpos="0 0 0.27 1 0 0 0 0 0.9 -1.8 0 0.9 -1.8 0 0.9 -1.8 0 0.9 -1.8"
-      ctrl="0 0.9 -1.8 0 0.9 -1.8 0 0.9 -1.8 0 0.9 -1.8" />
+    <key name="0" qpos="0 0 1 1 0 0 0 0 0.9 -1.8 0 0.9 -1.8 0 0.9 -1.8 0 0.9 -1.8" />
   </keyframe>
 </mujoco>
