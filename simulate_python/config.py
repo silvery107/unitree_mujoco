@@ -3,7 +3,7 @@ ROBOT_SCENE = "../unitree_robots/" + ROBOT + "/scene.xml" # Robot scene
 DOMAIN_ID = 0 # Domain id
 INTERFACE = None # Interface 
 
-USE_JOYSTICK = 1 # Simulate Unitree WirelessController using a gamepad
+USE_JOYSTICK = 0 # Simulate Unitree WirelessController using a gamepad
 JOYSTICK_TYPE = "xbox" # support "xbox" and "switch" gamepad layout
 JOYSTICK_DEVICE = 0 # Joystick number
 

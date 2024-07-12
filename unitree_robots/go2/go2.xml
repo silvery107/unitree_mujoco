@@ -34,7 +34,7 @@
         <geom group="3"/>
         <default class="foot">
           <geom size="0.022" pos="-0.002 0 -0.213" priority="1" condim="6"
-            friction="0.4 0.02 0.01"/>
+            friction="0.7 0.02 0.01"/>
         </default>
       </default>
     </default>
@@ -65,7 +65,7 @@
   </asset>
 
   <worldbody>
-    <body name="base_link" pos="0 0 1" childclass="go2">
+    <body name="base_link" pos="0 0 0.445" childclass="go2">
       <inertial pos="0.021112 0 -0.005366" quat="-0.000543471 0.713435 -0.00173769 0.700719"
         mass="6.921"
         diaginertia="0.107027 0.0980771 0.0244531" />
