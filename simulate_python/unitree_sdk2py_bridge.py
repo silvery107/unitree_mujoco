@@ -3,7 +3,7 @@ import numpy as np
 import pygame
 import sys
 import struct
-from .utils import *
+from utils import *
 
 from unitree_sdk2py.core.channel import ChannelSubscriber, ChannelPublisher
 from unitree_sdk2py.idl.unitree_go.msg.dds_ import LowCmd_
